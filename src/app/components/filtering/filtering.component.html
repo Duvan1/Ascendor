@@ -1,0 +1,29 @@
+<div class="input-group mb-3">
+  <input
+    type="text"
+    class="form-control input-src"
+    placeholder="Ingrese una palabra clave"
+    aria-label="Recipient's username"
+    aria-describedby="basic-addon2"
+    [readonly]="isLoading"
+    [spellcheck]="false"
+    [(ngModel)]="src"
+    (ngModelChange)="onChange.emit($event)"
+  />
+  <div class="input-group-append">
+    <button
+      class="btn btn-outline-light h-100"
+      type="button"
+      [disabled]="src.length < 3 || isLoading"
+      (click)="search.emit(src)"
+    >
+      {{ !isLoading ? "Buscar" : "" }}
+      <div *ngIf="isLoading" class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
+  </div>
+</div>
+<p class="badge badge-danger" *ngIf="src.length < 3">
+  Ingrese al menos 4 caracteres
+</p>

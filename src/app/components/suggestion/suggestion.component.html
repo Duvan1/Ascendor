@@ -1,0 +1,18 @@
+<div class="results">
+  <ul>
+    <ng-container *ngIf="suggestion && showSuggestion">
+      <li>
+        <a (click)="showSuggestion = false" href="name">Cerrar</a>
+      </li>
+      <li *ngFor="let item of suggestion">
+        <a
+          class="name"
+          target="_blank"
+          [href]="'https://github.com/' + item.login"
+        >
+          {{ item.login }}
+        </a>
+        <img [src]="item.avatar_url" alt="avatar" /></li
+    ></ng-container>
+  </ul>
+</div>

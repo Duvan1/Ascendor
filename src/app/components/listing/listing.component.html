@@ -1,0 +1,30 @@
+<div class="card-columns" *ngIf="data$">
+  <div class="card mb-3" *ngFor="let item of data$">
+    <img [src]="item.avatar_url" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title text-center">
+        <a
+          [href]="'https://github.com/' + item.login"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ item.login }}</a
+        >
+      </h5>
+      <p class="card-text">
+        Tipo: <span class="badge badge-dark">{{ item.type }}</span>
+      </p>
+      <p class="card-text">
+        Coincidencia:
+        <span
+          class="badge"
+          [ngClass]="{
+            'badge-danger': item.score < 0.4,
+            'badge-warning': item.score >= 0.4 && item.score < 0.7,
+            'badge-success': item.score >= 0.7
+          }"
+          >{{ item.score | score }}</span
+        >
+      </p>
+    </div>
+  </div>
+</div>
